@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1059663555369",
+    "project_id": "vidi-app-949e5",
+    "storage_bucket": "vidi-app-949e5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1059663555369:android:d00e28eb28ce9ea1032538",
+        "android_client_info": {
+          "package_name": "com.minhhuycoder.vidi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAk8qLJZ_L72hoiL5YspH4zJXm5Pxny4Mc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
