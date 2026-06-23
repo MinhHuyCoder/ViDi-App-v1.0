@@ -1,16 +1,19 @@
-package core
+package com.minhhuycoder.vidi.core
 
+import android.widget.TextView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import models.PlaceModel
+import com.minhhuycoder.vidi.models.PlaceModel
 import com.minhhuycoder.vidi.R
 
 class PlaceAdapter(private val placeList: List<PlaceModel>) : RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder>() {
 
     class PlaceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        // Sau này Kiều vẽ XML xong thì thêm findViewById ở đây
+        // Khai báo các view trong item_place.xml ở đây
+        val tvName: TextView = itemView.findViewById(R.id.tvName) // Sửa ID theo XML của mày
+        val tvAddress: TextView = itemView.findViewById(R.id.tvAddress)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaceViewHolder {
@@ -20,7 +23,10 @@ class PlaceAdapter(private val placeList: List<PlaceModel>) : RecyclerView.Adapt
 
     override fun onBindViewHolder(holder: PlaceViewHolder, position: Int) {
         val place = placeList[position]
-        // Đổ dữ liệu vào view ở đây
+        holder.tvName.text = place.name
+        holder.tvAddress.text = place.address
+
+        // holder.tvDescription.text = place.description
     }
 
     override fun getItemCount() = placeList.size

@@ -1,4 +1,4 @@
-package core
+package com.minhhuycoder.vidi.core
 
 object Const {
     const val COLLECTION_USERS = "users"
