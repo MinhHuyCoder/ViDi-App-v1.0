@@ -1,4 +1,4 @@
-package models
+package com.minhhuycoder.vidi.models
 
 data class PlaceModel(
     val placeId: String = "",
