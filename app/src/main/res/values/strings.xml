@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">VIDi</string>
+    <string name="forgot_password_title">Quên Mật Khẩu</string>
+    <string name="label_username">Tên Người Dùng</string>
+    <string name="label_email_phone">Nhập Email hoặc Số Điện Thoại</string>
+    <string name="label_otp">Mã OTP</string>
+    <string name="btn_verify">Gửi Yêu Cầu</string>
+    <string name="link_change_password"><u>Đổi mật khẩu</u></string>
 </resources>
