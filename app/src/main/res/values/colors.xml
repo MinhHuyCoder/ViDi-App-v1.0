@@ -2,4 +2,12 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="profile_bg">#E8E0FF</color>
+    <color name="button_border">#E0E0E0</color>
+    <color name="logout_bg">#2D2D2D</color>
+    <color name="text_secondary">#757575</color>
+    <color name="search_bg">#F5F1FF</color>
+    <color name="chip_selected">#5E5E5E</color>
+    <color name="chip_unselected">#E8E0FF</color>
+    <color name="rating_star">#000000</color>
 </resources>
