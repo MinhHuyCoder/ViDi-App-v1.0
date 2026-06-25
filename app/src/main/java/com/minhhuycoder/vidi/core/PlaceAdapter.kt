@@ -15,6 +15,8 @@ class PlaceAdapter(private val placeList: List<PlaceModel>) : RecyclerView.Adapt
     class PlaceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvName: TextView = itemView.findViewById(R.id.tvPlaceName)
         val tvAddress: TextView = itemView.findViewById(R.id.tvAddress)
+
+        val tvPlaceType = itemView.findViewById<TextView>(R.id.tvPlaceType)
         val tvRating: TextView = itemView.findViewById(R.id.tvRating)
         val ivPlaceImage: ImageView = itemView.findViewById(R.id.ivPlaceImage)
     }
@@ -27,6 +29,7 @@ class PlaceAdapter(private val placeList: List<PlaceModel>) : RecyclerView.Adapt
     override fun onBindViewHolder(holder: PlaceViewHolder, position: Int) {
         val place = placeList[position]
         holder.tvName.text = place.name
+        holder.tvPlaceType.text = place.category
         holder.tvAddress.text = place.address
         holder.tvRating.text = "${place.ratingAverage} ★"
 
