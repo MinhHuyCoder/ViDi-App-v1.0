@@ -1,11 +1,7 @@
 <resources>
+
     <string name="app_name">VIDi</string>
-    <string name="forgot_password_title">Quên Mật Khẩu</string>
-    <string name="label_username">Tên Người Dùng</string>
-    <string name="label_email_phone">Nhập Email hoặc Số Điện Thoại</string>
-    <string name="label_otp">Mã OTP</string>
-    <string name="btn_verify">Gửi Yêu Cầu</string>
-    <string name="link_change_password"><u>Đổi mật khẩu</u></string>
+
     <string name="login_title">Đăng Nhập</string>
     <string name="label_user">Tên người dùng</string>
     <string name="hint_user">Nhập email hoặc số điện thoại</string>
@@ -13,18 +9,65 @@
     <string name="hint_password">Nhập mật khẩu</string>
     <string name="btn_login">Đăng nhập</string>
     <string name="link_register"><u>Bạn chưa có tài khoản? Đăng Ký.</u></string>
+
+
+    <string name="forgot_password_title">Quên Mật Khẩu</string>
+    <string name="label_username">Tên Người Dùng</string>
+    <string name="label_email_phone">Nhập Email hoặc Số Điện Thoại</string>
+    <string name="btn_verify">Gửi Yêu Cầu</string>
+
+
+    <string name="link_change_password"><u>Đổi mật khẩu</u></string>
+    <string name="new_password_title">Nhập Mật Khẩu Mới</string>
+    <string name="label_new_password">Mật Khẩu Mới</string>
+    <string name="label_confirm_new_password">Xác Nhận Lại Mật Khẩu</string>
+    <string name="btn_accept">Chấp Nhận</string>
+
+
     <string name="register_title">Đăng Ký</string>
     <string name="label_email">Email</string>
     <string name="hint_email">Nhập email của bạn</string>
     <string name="label_phone">Số điện thoại</string>
     <string name="hint_phone">Nhập số điện thoại</string>
+    <string name="label_register_password">Mật khẩu</string>
+    <string name="hint_register_password">Nhập mật khẩu</string>
     <string name="label_confirm_password">Nhập lại mật khẩu</string>
     <string name="hint_confirm_password">Nhập lại mật khẩu</string>
     <string name="agree_text">Tôi đồng ý</string>
     <string name="policy_text">Chính sách bảo mật người dùng</string>
     <string name="btn_register">Đăng ký</string>
-    <string name="new_password_title">Nhập Mật Khẩu Mới</string>
-    <string name="label_new_password">Mật Khẩu Mới</string>
-    <string name="label_confirm_new_password">Xác Nhận Lại Mật Khẩu</string>
-    <string name="btn_accept">Chấp Nhận</string>
+
+
+    <string name="vidi_title">ViDi</string>
+    <string name="account_title">Tài khoản</string>
+    <string name="hi_username">Hi, Username</string>
+    <string name="account_info">Thông tin tài khoản</string>
+    <string name="security">Bảo mật</string>
+    <string name="my_reviews">Đánh giá của tôi</string>
+    <string name="logout">Đăng xuất</string>
+
+    <string name="nav_home">Home</string>
+    <string name="nav_favorite">Yêu thích</string>
+    <string name="nav_notifications">Thông báo</string>
+    <string name="nav_profile">Tôi</string>
+
+    <string name="search_hint">Tìm tên địa điểm</string>
+    <string name="check_in">Check-in</string>
+    <string name="cafe">Cà phê</string>
+    <string name="restaurant">Quán ăn</string>
+
+    <string name="default_place_name">Tên địa điểm</string>
+    <string name="default_place_type">Loại địa điểm</string>
+    <string name="default_location">Vị trí</string>
+    <string name="default_rating">5,0 ★</string>
+
+    <string name="detail_title">Chi tiết địa điểm</string>
+    <string name="description_label">Mô tả</string>
+    <string name="write_review_hint">Viết đánh giá của bạn</string>
+    <string name="send">Gửi</string>
+
+    <string name="default_date">dd-mm-yy</string>
+    <string name="default_review_text">Đánh giá</string>
+    <string name="default_user_name">Tên</string>
+
 </resources>
