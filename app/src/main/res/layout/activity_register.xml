@@ -84,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/label_password"
+            android:text="@string/label_register_password"
             android:textColor="#333333"
             android:textSize="16sp" />
 
@@ -95,7 +95,7 @@
             android:layout_marginTop="8dp"
             android:autofillHints="newPassword"
             android:background="@drawable/bg_rounded_border"
-            android:hint="@string/hint_password"
+            android:hint="@string/hint_register_password"
             android:inputType="textPassword"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
@@ -137,11 +137,12 @@
                 android:id="@+id/cbPolicy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
                 android:buttonTint="#2D2D2D"
+                android:checked="true"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
-                android:padding="0dp" />
+                android:padding="0dp"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
