@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Quản lý địa điểm"
+            android:text="Quản lý người dùng"
             android:textColor="@color/black"
             android:textSize="22sp"
             android:textStyle="bold" />
@@ -59,49 +59,7 @@
         android:paddingHorizontal="16dp"
         app:layout_constraintTop_toBottomOf="@id/headerLayout">
 
-        <!-- Places Stat -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:layout_weight="1"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="0dp"
-            app:strokeColor="#EEEEEE"
-            app:strokeWidth="1dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="12dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="📍"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/tvTotalPlaces"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="42"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Địa điểm"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="10sp" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Users Stat -->
+        <!-- Total Users Stat -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -127,7 +85,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/tvTotalUsers"
+                    android:id="@+id/tvTotalUsersCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="156"
@@ -137,13 +95,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Người dùng"
+                    android:text="Tổng User"
                     android:textColor="@color/text_secondary"
                     android:textSize="10sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Reviews Stat -->
+        <!-- Locked Users Stat -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -165,21 +123,63 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="⭐"
+                    android:text="🔒"
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/tvTotalReviews"
+                    android:id="@+id/tvLockedUsersCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1.2k"
+                    android:text="8"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Đánh giá"
+                    android:text="Đã khóa"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Admin Stat -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:strokeColor="#EEEEEE"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="👑"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvAdminCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Admin"
                     android:textColor="@color/text_secondary"
                     android:textSize="10sp" />
             </LinearLayout>
@@ -205,10 +205,10 @@
         app:startIconDrawable="@android:drawable/ic_menu_search">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etSearch"
+            android:id="@+id/etUserSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Tìm địa điểm..."
+            android:hint="Tìm theo tên hoặc email..."
             android:inputType="text"
             android:paddingVertical="12dp"
             android:textSize="14sp" />
@@ -216,7 +216,7 @@
 
     <!-- Main Content: RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvPlaces"
+        android:id="@+id/rvUsers"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
@@ -226,22 +226,35 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
         app:layout_constraintTop_toBottomOf="@id/searchLayout"
-        tools:listitem="@layout/item_place" />
+        tools:listitem="@layout/item_admin_user" />
 
-    <!-- Extended FAB -->
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/fabAddPlace"
+    <!-- Empty State -->
+    <LinearLayout
+        android:id="@+id/llEmptyState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="Thêm địa điểm"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        app:backgroundTint="@color/black"
-        app:icon="@android:drawable/ic_input_add"
-        app:iconTint="@color/white"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="👤"
+            android:textSize="64sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Chưa có người dùng"
+            android:textColor="@color/text_secondary"
+            android:textSize="16sp" />
+    </LinearLayout>
 
     <!-- Bottom Navigation Bar -->
     <LinearLayout
@@ -265,29 +278,22 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <View
-                android:layout_width="60dp"
-                android:layout_height="35dp"
-                android:background="@drawable/chip_selected"
-                android:backgroundTint="#E8E0FF" />
-
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginTop="-30dp"
                 android:src="@android:drawable/ic_menu_mylocation"
-                app:tint="@color/black" />
+                app:tint="@color/text_secondary" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="Địa điểm"
-                android:textColor="@color/black"
+                android:textColor="@color/text_secondary"
                 android:textSize="10sp" />
         </LinearLayout>
 
-        <!-- Users Tab -->
+        <!-- Users Tab (Selected) -->
         <LinearLayout
             android:id="@+id/tabUsers"
             android:layout_width="0dp"
@@ -299,18 +305,25 @@
             android:gravity="center"
             android:orientation="vertical">
 
+            <View
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:background="@drawable/chip_selected"
+                android:backgroundTint="#E8E0FF" />
+
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:layout_marginTop="-30dp"
                 android:src="@android:drawable/ic_menu_myplaces"
-                app:tint="@color/text_secondary" />
+                app:tint="@color/black" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="Người dùng"
-                android:textColor="@color/text_secondary"
+                android:textColor="@color/black"
                 android:textSize="10sp" />
         </LinearLayout>
 
