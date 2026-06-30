@@ -2,6 +2,7 @@ package com.minhhuycoder.vidi
 
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -14,6 +15,7 @@ import com.minhhuycoder.vidi.viewmodel.PlaceViewModel
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var adapter: PlaceAdapter
     private lateinit var viewModel: PlaceViewModel
     private lateinit var recyclerView: RecyclerView
 
@@ -31,21 +33,39 @@ class MainActivity : AppCompatActivity() {
 
         // Khởi tạo RecyclerView và LayoutManager
         recyclerView = findViewById(R.id.recyclerView)
+
         recyclerView.layoutManager = LinearLayoutManager(this)
+
+        adapter = PlaceAdapter()
+
+        recyclerView.adapter = adapter
 
         // Khởi tạo ViewModel
         viewModel = ViewModelProvider(this)[PlaceViewModel::class.java]
 
         // Lắng nghe dữ liệu
         viewModel.places.observe(this) { list ->
+
+            adapter.submitList(list)
+
             if (list.isNotEmpty()) {
-                val adapter = PlaceAdapter(list)
-                recyclerView.adapter = adapter
-                android.widget.Toast.makeText(this, "Đã tải ${list.size} địa điểm", android.widget.Toast.LENGTH_SHORT).show()
+
+                Toast.makeText(
+                    this,
+                    "Đã tải ${list.size} địa điểm",
+                    Toast.LENGTH_SHORT
+                ).show()
+
             } else {
-                // Báo lỗi ra màn hình luôn
-                android.widget.Toast.makeText(this, "Firebase trả về danh sách RỖNG!", android.widget.Toast.LENGTH_LONG).show()
+
+                Toast.makeText(
+                    this,
+                    "Firebase trả về danh sách RỖNG!",
+                    Toast.LENGTH_LONG
+                ).show()
+
             }
+
         }
     }
 }

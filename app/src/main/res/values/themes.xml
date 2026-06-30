@@ -7,11 +7,28 @@
 
     <style name="Theme.VIDi" parent="Base.Theme.VIDi" />
 
-    <style name="CircleImage" parent="">
+    <style name="CircleImage" parent="ShapeAppearance.Material3.SmallComponent">
         <item name="cornerSize">50%</item>
     </style>
 
-    <style name="RoundedImage" parent="">
+    <style name="RoundedImage" parent="ShapeAppearance.Material3.SmallComponent">
         <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="RoundedTopImage" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerSizeTopLeft">18dp</item>
+        <item name="cornerSizeTopRight">18dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <style name="RoundedBottomImage" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeBottomLeft">18dp</item>
+        <item name="cornerSizeBottomRight">18dp</item>
+    </style>
+
+    <style name="TextAppearance.ViDi" parent="TextAppearance.MaterialComponents.Body1">
     </style>
 </resources>

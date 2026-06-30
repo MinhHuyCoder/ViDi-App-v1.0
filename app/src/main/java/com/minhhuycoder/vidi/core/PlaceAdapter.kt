@@ -10,15 +10,25 @@ import com.bumptech.glide.Glide
 import com.minhhuycoder.vidi.models.PlaceModel
 import com.minhhuycoder.vidi.R
 
-class PlaceAdapter(private val placeList: List<PlaceModel>) : RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder>() {
+class PlaceAdapter : RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder>() {
+
+    private val placeList = mutableListOf<PlaceModel>()
 
     class PlaceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvName: TextView = itemView.findViewById(R.id.tvPlaceName)
-        val tvAddress: TextView = itemView.findViewById(R.id.tvAddress)
 
-        val tvPlaceType = itemView.findViewById<TextView>(R.id.tvPlaceType)
+        val tvName: TextView = itemView.findViewById(R.id.tvPlaceName)
+        val tvPlaceType: TextView = itemView.findViewById(R.id.tvPlaceType)
+        val tvAddress: TextView = itemView.findViewById(R.id.tvAddress)
         val tvRating: TextView = itemView.findViewById(R.id.tvRating)
+        val tvOpen: TextView = itemView.findViewById(R.id.tvOpen)
+        val ivFavorite: ImageView = itemView.findViewById(R.id.ivFavorite)
         val ivPlaceImage: ImageView = itemView.findViewById(R.id.ivPlaceImage)
+    }
+
+    fun submitList(newList: List<PlaceModel>) {
+        placeList.clear()
+        placeList.addAll(newList)
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaceViewHolder {
@@ -27,15 +37,33 @@ class PlaceAdapter(private val placeList: List<PlaceModel>) : RecyclerView.Adapt
     }
 
     override fun onBindViewHolder(holder: PlaceViewHolder, position: Int) {
+
         val place = placeList[position]
+
         holder.tvName.text = place.name
+
         holder.tvPlaceType.text = place.category
+
         holder.tvAddress.text = place.address
-        holder.tvRating.text = "${place.ratingAverage} ★"
+
+        holder.tvRating.text = String.format("%.1f", place.rating)
+
+        holder.tvOpen.text =
+            if (place.status) {
+                "🟢 Mở đến ${place.closeTime}"
+            } else {
+                "🔴 Đã đóng"
+            }
+
+        holder.ivFavorite.setImageResource(
+            android.R.drawable.btn_star_big_off
+        )
 
         Glide.with(holder.itemView.context)
             .load(place.imageUrl)
             .placeholder(android.R.drawable.ic_menu_gallery)
+            .error(android.R.drawable.ic_menu_report_image)
+            .centerCrop()
             .into(holder.ivPlaceImage)
     }
 

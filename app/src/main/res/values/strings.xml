@@ -70,4 +70,6 @@
     <string name="default_review_text">Đánh giá</string>
     <string name="default_user_name">Tên</string>
 
+    <!-- Wishlist -->
+    <string name="empty_wishlist_message">Chưa có địa điểm nào được yêu thích</string>
 </resources>

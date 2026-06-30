@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ========================= -->
+    <!-- ViDi Typography -->
+    <!-- ========================= -->
+
+    <style name="TextAppearance.ViDi.Title">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextAppearance.ViDi.Subtitle">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+
+    <style name="TextAppearance.ViDi.Label">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <!-- ========================= -->
+    <!-- Button -->
+    <!-- ========================= -->
+
+    <style name="Widget.ViDi.Button"
+        parent="Widget.Material3.Button">
+
+        <item name="cornerRadius">16dp</item>
+
+    </style>
+
+    <!-- ========================= -->
+    <!-- TextInputLayout -->
+    <!-- ========================= -->
+
+    <style name="Widget.ViDi.TextInputLayout"
+        parent="Widget.Material3.TextInputLayout.OutlinedBox">
+
+        <item name="boxCornerRadiusTopStart">16dp</item>
+        <item name="boxCornerRadiusTopEnd">16dp</item>
+        <item name="boxCornerRadiusBottomStart">16dp</item>
+        <item name="boxCornerRadiusBottomEnd">16dp</item>
+
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+
+        <item name="hintTextColor">@color/text_secondary</item>
+
+    </style>
+
+</resources>

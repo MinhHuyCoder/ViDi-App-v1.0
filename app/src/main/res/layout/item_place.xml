@@ -1,98 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="24dp"
-    android:layout_marginEnd="24dp"
+    android:layout_marginHorizontal="16dp"
     android:layout_marginBottom="16dp"
-    app:cardCornerRadius="16dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardCornerRadius="24dp"
     app:cardElevation="0dp"
-    app:strokeWidth="1dp"
-    app:strokeColor="#EEEEEE">
+    app:strokeColor="@color/button_border"
+    app:strokeWidth="1dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="12dp">
+        android:layout_height="wrap_content">
 
-        <!-- Place Image -->
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ivPlaceImage"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
-            android:src="@android:drawable/ic_menu_gallery"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/RoundedTopImage"
+            tools:src="@android:drawable/ic_menu_gallery" />
+
+        <!-- Overlay for Favorite Button -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_margin="12dp"
+            app:cardBackgroundColor="#CCFFFFFF"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/RoundedImage" />
+            app:strokeWidth="0dp">
 
+            <ImageView
+                android:id="@+id/ivFavorite"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:src="@android:drawable/btn_star_big_off"
+                app:tint="@color/black" />
+        </com.google.android.material.card.MaterialCardView>
 
-        <!-- Info Area -->
-        <TextView
-            android:id="@+id/tvPlaceName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@string/default_place_name"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/tvRating"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivPlaceImage" />
-
-        <TextView
-            android:id="@+id/tvPlaceType"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/default_place_type"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/tvRating"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvPlaceName" />
-
-
-
-        <TextView
-            android:id="@+id/tvAddress"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/default_location"
-            android:textColor="@color/text_secondary"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toStartOf="@+id/ivHeart"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvPlaceType"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
-        <!-- Rating -->
-        <TextView
-            android:id="@+id/tvRating"
+        <!-- Status Chip Overlay -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/default_rating"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/tvPlaceType"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tvPlaceType" />
+            android:layout_margin="12dp"
+            app:cardBackgroundColor="#CCFFFFFF"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeWidth="0dp">
 
-        <!-- Favorite Icon -->
-        <ImageView
-            android:id="@+id/ivHeart"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@android:drawable/btn_star_big_off"
-            app:layout_constraintBottom_toBottomOf="@+id/tvAddress"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tvAddress"
-            app:tint="@color/black" />
+            <TextView
+                android:id="@+id/tvOpen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:textColor="#43A047"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="🟢 Open Now" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            app:layout_constraintTop_toBottomOf="@id/ivPlaceImage">
+
+            <TextView
+                android:id="@+id/tvPlaceName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/tvRating"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Highlands Coffee" />
+
+            <LinearLayout
+                android:id="@+id/layoutRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvPlaceName">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@android:drawable/btn_star_big_on"
+                    app:tint="#FFC107"/>
+
+                <TextView
+                    android:id="@+id/tvRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_primary"
+                    tools:text="4.8"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvPlaceType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvPlaceName"
+                tools:text="☕ Cafe" />
+
+            <TextView
+                android:id="@+id/tvSeparator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="6dp"
+                android:text="•"
+                android:textColor="@color/text_secondary"
+                app:layout_constraintBottom_toBottomOf="@id/tvPlaceType"
+                app:layout_constraintStart_toEndOf="@id/tvPlaceType"
+                app:layout_constraintTop_toTopOf="@id/tvPlaceType" />
+
+            <TextView
+                android:id="@+id/tvAddress"
+                android:layout_marginTop="2dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/tvPlaceType"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvSeparator"
+                app:layout_constraintTop_toTopOf="@id/tvPlaceType"
+                tools:text="Gò Vấp, TP. HCM" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

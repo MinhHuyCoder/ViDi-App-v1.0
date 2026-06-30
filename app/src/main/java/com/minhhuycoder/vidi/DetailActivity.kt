@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.minhhuycoder.vidi.core.ReviewAdapter
 import com.minhhuycoder.vidi.databinding.ActivityDetailBinding
 import com.minhhuycoder.vidi.viewmodel.ReviewViewModel
+import com.minhhuycoder.vidi.models.PhotoModel
+import com.minhhuycoder.vidi.core.PhotoAdapter
 
 /**
  * DetailActivity - Hiển thị chi tiết địa điểm và xử lý danh sách đánh giá từ Firestore
@@ -18,6 +20,14 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var viewModel: ReviewViewModel
     private val reviewAdapter by lazy { ReviewAdapter() }
 
+    private val photoList = listOf(
+        PhotoModel("https://picsum.photos/600/600?1"),
+        PhotoModel("https://picsum.photos/600/600?2"),
+        PhotoModel("https://picsum.photos/600/600?3"),
+        PhotoModel("https://picsum.photos/600/600?4"),
+        PhotoModel("https://picsum.photos/600/600?5")
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
@@ -27,6 +37,7 @@ class DetailActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[ReviewViewModel::class.java]
 
         setupRecyclerView()
+        setupAlbumRecyclerView()
         observeViewModel()
 
         // 2. Lấy placeId từ Intent (giả sử truyền từ màn hình trước)
@@ -41,6 +52,17 @@ class DetailActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@DetailActivity)
             adapter = reviewAdapter
             isNestedScrollingEnabled = false // Tránh xung đột cuộn với NestedScrollView
+        }
+    }
+
+    private fun setupAlbumRecyclerView() {
+        binding.rvAlbum.apply {
+            layoutManager = LinearLayoutManager(
+                this@DetailActivity,
+                LinearLayoutManager.HORIZONTAL,
+                false
+            )
+            adapter = PhotoAdapter(photoList)
         }
     }
 

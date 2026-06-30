@@ -1,135 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="@color/background">
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="48dp"
+        android:contentDescription="@string/app_name"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
         android:id="@+id/tvRegisterTitle"
+        style="@style/TextAppearance.ViDi.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="20dp"
         android:text="@string/register_title"
-        android:textColor="#1A1A1A"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgLogo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvSubtitle"
+        style="@style/TextAppearance.ViDi.Subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Tạo tài khoản để bắt đầu trải nghiệm ViDi"
+        app:layout_constraintTop_toBottomOf="@id/tvRegisterTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <LinearLayout
         android:id="@+id/registerContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/bg_rounded_border"
-        android:elevation="4dp"
+        android:layout_margin="24dp"
         android:orientation="vertical"
-        android:padding="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSubtitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvRegisterTitle">
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Email Field -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_email"
-            android:textColor="#333333"
-            android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/etEmail"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.ViDi.TextInputLayout"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="8dp"
-            android:autofillHints="emailAddress"
-            android:background="@drawable/bg_rounded_border"
-            android:hint="@string/hint_email"
-            android:inputType="textEmailAddress"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:textColorHint="#BCBCBC"
-            android:textSize="14sp" />
+            android:layout_height="wrap_content"
+            android:hint="@string/label_email">
 
-        <!-- Phone Field -->
-        <TextView
-            android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="emailAddress"
+                android:inputType="textEmailAddress"
+                android:hint="@string/hint_email"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.ViDi.TextInputLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/label_phone"
-            android:textColor="#333333"
-            android:textSize="16sp" />
+            android:hint="@string/label_phone">
 
-        <EditText
-            android:id="@+id/etPhone"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="phoneNumber"
+                android:inputType="phone"
+                android:hint="@string/hint_phone"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.ViDi.TextInputLayout"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="8dp"
-            android:autofillHints="phoneNumber"
-            android:background="@drawable/bg_rounded_border"
-            android:hint="@string/hint_phone"
-            android:inputType="phone"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:textColorHint="#BCBCBC"
-            android:textSize="14sp" />
-
-        <!-- Password Field -->
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/label_register_password"
-            android:textColor="#333333"
-            android:textSize="16sp" />
+            android:hint="@string/label_register_password"
+            app:endIconMode="password_toggle">
 
-        <EditText
-            android:id="@+id/etPassword"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="newPassword"
+                android:inputType="textPassword"
+                android:hint="@string/hint_register_password"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.ViDi.TextInputLayout"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="8dp"
-            android:autofillHints="newPassword"
-            android:background="@drawable/bg_rounded_border"
-            android:hint="@string/hint_register_password"
-            android:inputType="textPassword"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:textColorHint="#BCBCBC"
-            android:textSize="14sp" />
-
-        <!-- Confirm Password Field -->
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/label_confirm_password"
-            android:textColor="#333333"
-            android:textSize="16sp" />
+            android:hint="@string/label_confirm_password"
+            app:endIconMode="password_toggle">
 
-        <EditText
-            android:id="@+id/etConfirmPassword"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="8dp"
-            android:autofillHints="password"
-            android:background="@drawable/bg_rounded_border"
-            android:hint="@string/hint_confirm_password"
-            android:inputType="textPassword"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:textColorHint="#BCBCBC"
-            android:textSize="14sp" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="newPassword"
+                android:inputType="textPassword"
+                android:hint="@string/hint_confirm_password"/>
 
-        <!-- Policy Checkbox -->
+        </com.google.android.material.textfield.TextInputLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -137,12 +128,11 @@
                 android:id="@+id/cbPolicy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="#2D2D2D"
                 android:checked="true"
+                android:buttonTint="@color/primary"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
-                android:padding="0dp"
-                tools:ignore="TouchTargetSizeCheck" />
+                android:padding="0dp"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -154,32 +144,31 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/agree_text"
-                    android:textColor="#333333"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/policy_text"
-                    android:textColor="#8E8E8E"
-                    android:textSize="12sp" />
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp"/>
+
             </LinearLayout>
+
         </LinearLayout>
 
-        <!-- Register Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnRegister"
+            style="@style/Widget.ViDi.Button"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginTop="24dp"
-            android:backgroundTint="#2D2D2D"
-            android:text="@string/btn_register"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            app:cornerRadius="8dp" />
-
+            android:text="@string/btn_register"/>
     </LinearLayout>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
