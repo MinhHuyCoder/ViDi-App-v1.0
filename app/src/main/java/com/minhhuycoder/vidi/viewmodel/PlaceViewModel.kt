@@ -3,7 +3,7 @@ package com.minhhuycoder.vidi.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import core.repository.PlaceRepository
+import com.minhhuycoder.vidi.core.PlaceRepository
 import com.minhhuycoder.vidi.models.PlaceModel // Đảm bảo folder 'models' nằm cùng cấp với folder 'viewmodel'
 import kotlinx.coroutines.Dispatchers
 

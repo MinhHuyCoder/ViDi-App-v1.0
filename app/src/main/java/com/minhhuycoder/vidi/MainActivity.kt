@@ -1,6 +1,7 @@
 package com.minhhuycoder.vidi
 
 
+import android.content.Intent // === THÊM: Thư viện để chuyển màn hình ===
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -39,6 +40,13 @@ class MainActivity : AppCompatActivity() {
         adapter = PlaceAdapter()
 
         recyclerView.adapter = adapter
+
+        // === THÊM: Đóng gói placeId của quán được click ném sang màn hình chi tiết ===
+        adapter.setOnItemClickListener { place ->
+            val intent = Intent(this, DetailActivity::class.java)
+            intent.putExtra("PLACE_ID", place.placeId) // Đẩy biến "placeId" từ Hợp đồng dữ liệu
+            startActivity(intent)
+        }
 
         // Khởi tạo ViewModel
         viewModel = ViewModelProvider(this)[PlaceViewModel::class.java]
