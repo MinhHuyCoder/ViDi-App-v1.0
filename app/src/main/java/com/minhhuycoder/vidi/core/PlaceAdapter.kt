@@ -14,6 +14,13 @@ class PlaceAdapter : RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder>() {
 
     private val placeList = mutableListOf<PlaceModel>()
 
+    // === THÊM: Lambda biến lưu trữ sự kiện click từ MainActivity chuyển qua ===
+    private var onItemClickListener: ((PlaceModel) -> Unit)? = null
+
+    fun setOnItemClickListener(listener: (PlaceModel) -> Unit) {
+        onItemClickListener = listener
+    }
+
     class PlaceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val tvName: TextView = itemView.findViewById(R.id.tvPlaceName)
@@ -46,7 +53,8 @@ class PlaceAdapter : RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder>() {
 
         holder.tvAddress.text = place.address
 
-        holder.tvRating.text = String.format("%.1f", place.rating)
+        // === SỬA: Đổi từ place.rating sang place.ratingAverage theo tài liệu nhóm ===
+        holder.tvRating.text = String.format("%.1f", place.ratingAverage)
 
         holder.tvOpen.text =
             if (place.status) {
@@ -65,6 +73,11 @@ class PlaceAdapter : RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder>() {
             .error(android.R.drawable.ic_menu_report_image)
             .centerCrop()
             .into(holder.ivPlaceImage)
+
+        // === THÊM: Lắng nghe sự kiện click vào item quán để chuyển trang ===
+        holder.itemView.setOnClickListener {
+            onItemClickListener?.invoke(place)
+        }
     }
 
     override fun getItemCount() = placeList.size
