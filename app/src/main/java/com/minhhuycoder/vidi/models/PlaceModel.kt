@@ -22,7 +22,7 @@ data class PlaceModel(
 
     val closeTime: String = "",
 
-    val ratingAverage: Double = 0.0,
+    val rating: Double = 0.0,
 
     val reviewCount: Int = 0,
 

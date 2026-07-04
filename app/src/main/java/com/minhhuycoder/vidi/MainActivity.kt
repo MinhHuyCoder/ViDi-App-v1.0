@@ -13,12 +13,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.minhhuycoder.vidi.core.PlaceAdapter
 import com.minhhuycoder.vidi.viewmodel.PlaceViewModel
+import com.minhhuycoder.vidi.models.PlaceModel
+import android.widget.EditText
+import androidx.core.widget.addTextChangedListener
+import com.google.android.material.chip.ChipGroup
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var adapter: PlaceAdapter
     private lateinit var viewModel: PlaceViewModel
     private lateinit var recyclerView: RecyclerView
+
+    private var fullPlaceList = listOf<PlaceModel>()
+
+    private var searchKeyword = ""
+    private var selectedCategory = "ALL"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +64,13 @@ class MainActivity : AppCompatActivity() {
         // Lắng nghe dữ liệu
         viewModel.places.observe(this) { list ->
 
-            adapter.submitList(list)
+
+            fullPlaceList = list
+            applyFilter()
+
+            list.forEach {
+                println("Category = ${it.category}")
+            }
 
             if (list.isNotEmpty()) {
 
@@ -75,5 +91,70 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+
+        val etSearch = findViewById<EditText>(R.id.etSearch)
+
+        etSearch.addTextChangedListener {
+
+            searchKeyword = it.toString().trim()
+
+            applyFilter()
+
+        }
+
+        val chipGroup = findViewById<ChipGroup>(R.id.chipGroupFilter)
+        chipGroup.setOnCheckedStateChangeListener { _, checkedIds ->
+
+            when (checkedIds.firstOrNull()) {
+
+                R.id.chipall -> selectedCategory = "ALL"
+
+                R.id.chipCheckin -> selectedCategory = "CHECKIN"
+
+                R.id.chipCafe -> selectedCategory = "CAFE"
+
+                R.id.chipEatery -> selectedCategory = "EATERY"
+            }
+
+            applyFilter()
+        }
+
+
+
+    }
+    private fun applyFilter() {
+
+        var result = fullPlaceList
+
+        when (selectedCategory) {
+
+            "CHECKIN" -> {
+                result = result.filter {
+                    it.category.contains("check", true)
+                }
+            }
+
+            "CAFE" -> {
+                result = result.filter {
+                    it.category.contains("cafe", true)
+                }
+            }
+
+            "EATERY" -> {
+                result = result.filter {
+                    it.category.contains("quán", true)
+                            || it.category.contains("ăn", true)
+                            || it.category.contains("restaurant", true)
+                }
+            }
+        }
+
+        if (searchKeyword.isNotEmpty()) {
+            result = result.filter {
+                it.name.contains(searchKeyword, true)
+            }
+        }
+
+        adapter.submitList(result)
     }
 }

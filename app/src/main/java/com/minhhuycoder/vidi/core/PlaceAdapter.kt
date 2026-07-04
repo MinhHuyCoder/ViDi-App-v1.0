@@ -53,8 +53,8 @@ class PlaceAdapter : RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder>() {
 
         holder.tvAddress.text = place.address
 
-        // === SỬA: Đổi từ place.rating sang place.ratingAverage theo tài liệu nhóm ===
-        holder.tvRating.text = String.format("%.1f", place.ratingAverage)
+        // === SỬA: Đổi từ place.rating sang place.rating theo tài liệu nhóm ===
+        holder.tvRating.text = String.format("%.1f", place.rating)
 
         holder.tvOpen.text =
             if (place.status) {

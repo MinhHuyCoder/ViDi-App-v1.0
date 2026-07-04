@@ -77,9 +77,9 @@ class DetailActivity : AppCompatActivity() {
                 binding.tvAddress.text = place.address
                 binding.tvDescription.text = place.description
 
-                // Binding dữ liệu điểm số trung bình (ratingAverage) từ hợp đồng dữ liệu
-                binding.tvRating.text = "⭐ ${String.format("%.1f", place.ratingAverage)} (${place.reviewCount} đánh giá)"
-                binding.tvAverageRating.text = String.format("%.1f", place.ratingAverage)
+                // Binding dữ liệu điểm số trung bình (rating) từ hợp đồng dữ liệu
+                binding.tvRating.text = "⭐ ${String.format("%.1f", place.rating)} (${place.reviewCount} đánh giá)"
+                binding.tvAverageRating.text = String.format("%.1f", place.rating)
 
                 binding.tvOpen.text = if (place.status) {
                     "🟢 Mở đến ${place.closeTime}"

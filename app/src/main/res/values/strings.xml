@@ -52,6 +52,7 @@
     <string name="nav_profile">Tôi</string>
 
     <string name="search_hint">Tìm tên địa điểm</string>
+    <string name="all">Tất cả</string>
     <string name="check_in">Check-in</string>
     <string name="cafe">Cà phê</string>
     <string name="restaurant">Quán ăn</string>
