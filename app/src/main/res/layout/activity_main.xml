@@ -84,7 +84,7 @@
             <EditText
                 android:id="@+id/etSearch"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginStart="12dp"
                 android:layout_weight="1"
                 android:background="@null"
@@ -107,43 +107,70 @@
         app:layout_constraintTop_toBottomOf="@id/searchCard"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:selectionRequired="true"
         app:singleLine="true"
         app:singleSelection="true"
         app:chipSpacingHorizontal="8dp">
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/chipall"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="@string/all"
+            android:textColor="@color/chip_text_selector"
+            app:chipBackgroundColor="@color/chip_background_selector"
+            app:chipStrokeColor="@color/primary"
+            app:chipStrokeWidth="3dp"
+            app:chipCornerRadius="30dp"
+            app:ensureMinTouchTargetSize="false"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <com.google.android.material.chip.Chip
             android:id="@+id/chipCheckin"
             android:layout_width="wrap_content"
-            android:layout_height="36dp"
+            android:layout_height="48dp"
             android:text="@string/check_in"
-            android:textColor="@android:color/white"
-            app:chipBackgroundColor="@color/primary"
-            app:chipCornerRadius="18dp"
-            app:ensureMinTouchTargetSize="false" />
+            android:textColor="@color/chip_text_selector"
+            app:chipBackgroundColor="@color/chip_background_selector"
+            app:chipStrokeColor="@color/primary"
+            app:chipStrokeWidth="3dp"
+            app:chipCornerRadius="30dp"
+            app:ensureMinTouchTargetSize="false"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"/>
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipCafe"
             android:layout_width="wrap_content"
-            android:layout_height="36dp"
+            android:layout_height="48dp"
             android:text="@string/cafe"
-            android:textColor="@color/primary"
-            app:chipBackgroundColor="@android:color/white"
+            android:textColor="@color/chip_text_selector"
+            app:chipBackgroundColor="@color/chip_background_selector"
             app:chipStrokeColor="@color/primary"
-            app:chipStrokeWidth="1dp"
-            app:chipCornerRadius="18dp"
-            app:ensureMinTouchTargetSize="false" />
+            app:chipStrokeWidth="3dp"
+            app:chipCornerRadius="30dp"
+            app:ensureMinTouchTargetSize="false"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"/>
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chipFood"
+            android:id="@+id/chipEatery"
             android:layout_width="wrap_content"
-            android:layout_height="36dp"
+            android:layout_height="48dp"
             android:text="@string/restaurant"
-            android:textColor="@color/primary"
-            app:chipBackgroundColor="@android:color/white"
+            android:textColor="@color/chip_text_selector"
+            app:chipBackgroundColor="@color/chip_background_selector"
             app:chipStrokeColor="@color/primary"
-            app:chipStrokeWidth="1dp"
-            app:chipCornerRadius="18dp"
-            app:ensureMinTouchTargetSize="false" />
+            app:chipStrokeWidth="3dp"
+            app:chipCornerRadius="30dp"
+            app:ensureMinTouchTargetSize="false"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"/>
 
     </com.google.android.material.chip.ChipGroup>
     <!-- Bottom Navigation -->
