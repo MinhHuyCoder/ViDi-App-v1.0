@@ -16,9 +16,13 @@ class PlaceAdapter : RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder>() {
 
     // === THÊM: Lambda biến lưu trữ sự kiện click từ MainActivity chuyển qua ===
     private var onItemClickListener: ((PlaceModel) -> Unit)? = null
+    private var onFavoriteClickListener: ((PlaceModel) -> Unit)? = null
 
     fun setOnItemClickListener(listener: (PlaceModel) -> Unit) {
         onItemClickListener = listener
+    }
+    fun setOnFavoriteClickListener(listener: (PlaceModel) -> Unit) {
+        onFavoriteClickListener = listener
     }
 
     class PlaceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -77,6 +81,13 @@ class PlaceAdapter : RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder>() {
         // === THÊM: Lắng nghe sự kiện click vào item quán để chuyển trang ===
         holder.itemView.setOnClickListener {
             onItemClickListener?.invoke(place)
+        }
+        holder.itemView.setOnClickListener {
+            onItemClickListener?.invoke(place)
+        }
+
+        holder.ivFavorite.setOnClickListener {
+            onFavoriteClickListener?.invoke(place)
         }
     }
 

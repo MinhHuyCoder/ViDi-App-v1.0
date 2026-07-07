@@ -57,6 +57,32 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        adapter.setOnFavoriteClickListener { place ->
+
+            val currentUser = FirebaseAuth.getInstance().currentUser
+
+            if (currentUser == null) {
+                Toast.makeText(this, "Vui lòng đăng nhập", Toast.LENGTH_SHORT).show()
+                return@setOnFavoriteClickListener
+            }
+
+            val favorite = hashMapOf(
+                "userId" to currentUser.uid,
+                "placeId" to place.placeId,
+                "createdAt" to System.currentTimeMillis()
+            )
+
+            FirebaseFirestore.getInstance()
+                .collection("favorites")
+                .add(favorite)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Đã thêm vào yêu thích", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Thêm thất bại", Toast.LENGTH_SHORT).show()
+                }
+        }
+
         // Khởi tạo ViewModel
         viewModel = ViewModelProvider(this)[PlaceViewModel::class.java]
 

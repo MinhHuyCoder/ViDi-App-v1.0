@@ -29,6 +29,7 @@
 
         <!-- Overlay for Favorite Button -->
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardFavorite"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_margin="12dp"
