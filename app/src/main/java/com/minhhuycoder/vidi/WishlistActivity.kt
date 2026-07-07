@@ -9,6 +9,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.minhhuycoder.vidi.databinding.ActivityWishlistBinding
 import com.minhhuycoder.vidi.models.PlaceModel // Sử dụng trực tiếp model gốc của nhóm
+import android.content.Intent
+import com.minhhuycoder.vidi.DetailActivity
 
 class WishlistActivity : AppCompatActivity() {
 
@@ -30,19 +32,36 @@ class WishlistActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
-        adapter = WishlistAdapter(emptyList()) { place ->
-            // Thực hiện hành động xóa khỏi wishlist khi click vào nút Tim
-            removePlaceFromWishlist(place.placeId)
-        }
+        adapter = WishlistAdapter(
+            emptyList(),
+
+            onItemClicked = { place ->
+                val intent = Intent(this, DetailActivity::class.java)
+                intent.putExtra("PLACE_ID", place.placeId)
+                startActivity(intent)
+            },
+
+            onHeartClicked = { place ->
+                removePlaceFromWishlist(place.placeId)
+            }
+        )
         binding.rvWishlist.adapter = adapter
     }
 
     private fun checkUserAndLoadData() {
         // Sử dụng ID cứng "user_test_huy" nếu chưa tích hợp module Đăng nhập
-        val currentUserId = auth.currentUser?.uid ?: "user_test_huy"
+        val currentUser = auth.currentUser
+
+        if (currentUser == null) {
+            Toast.makeText(this, "Vui lòng đăng nhập", Toast.LENGTH_SHORT).show()
+            finish()
+            return
+        }
+
+        val currentUserId = currentUser.uid
 
         // Lắng nghe Realtime (SnapshotListener) bảng wishlist lọc theo đúng userId hiện tại
-        db.collection("wishlist")
+        db.collection("favorites")
             .whereEqualTo("userId", currentUserId)
             .addSnapshotListener { snapshot, error ->
                 if (error != null) {
@@ -84,14 +103,34 @@ class WishlistActivity : AppCompatActivity() {
     }
 
     private fun removePlaceFromWishlist(placeId: String) {
-        val currentUserId = auth.currentUser?.uid ?: "user_test_huy"
-        // Áp dụng mẹo Document ID: userId_placeId gộp chuỗi chống lag tuyệt đối
-        val docId = "${currentUserId}_${placeId}"
 
-        db.collection("wishlist").document(docId)
-            .delete()
-            .addOnSuccessListener {
-                Toast.makeText(this, "Đã xóa khỏi danh sách yêu thích!", Toast.LENGTH_SHORT).show()
+        val currentUser = auth.currentUser ?: return
+
+        db.collection("favorites")
+            .whereEqualTo("userId", currentUser.uid)
+            .whereEqualTo("placeId", placeId)
+            .get()
+            .addOnSuccessListener { documents ->
+
+                for (document in documents) {
+                    document.reference.delete()
+                }
+
+                Toast.makeText(
+                    this,
+                    "Đã xóa khỏi danh sách yêu thích!",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+            }
+            .addOnFailureListener {
+
+                Toast.makeText(
+                    this,
+                    "Xóa thất bại!",
+                    Toast.LENGTH_SHORT
+                ).show()
+
             }
     }
 

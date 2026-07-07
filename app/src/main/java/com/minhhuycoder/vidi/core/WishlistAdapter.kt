@@ -9,6 +9,7 @@ import com.minhhuycoder.vidi.models.PlaceModel // Import model chung của nhóm
 
 class WishlistAdapter(
     private var places: List<PlaceModel>,
+    private val onItemClicked: (PlaceModel) -> Unit,
     private val onHeartClicked: (PlaceModel) -> Unit
 ) : RecyclerView.Adapter<WishlistAdapter.WishlistViewHolder>() {
 
@@ -39,8 +40,11 @@ class WishlistAdapter(
         binding.ivFavorite.setImageResource(android.R.drawable.btn_star_big_on)
 
         // Bắt sự kiện click nút Tim để xử lý xóa nhanh
-        binding.ivFavorite.setOnClickListener {
+        binding.cardFavorite.setOnClickListener {
             onHeartClicked(place)
+        }
+        binding.root.setOnClickListener {
+            onItemClicked(place)
         }
     }
 
