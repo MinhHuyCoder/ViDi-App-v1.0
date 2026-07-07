@@ -6,7 +6,6 @@ import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import com.minhhuycoder.vidi.MainActivity
 import com.minhhuycoder.vidi.databinding.ActivityLoginBinding
 

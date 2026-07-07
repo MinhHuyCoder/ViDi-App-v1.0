@@ -17,8 +17,6 @@ import com.minhhuycoder.vidi.models.PlaceModel
 import android.widget.EditText
 import androidx.core.widget.addTextChangedListener
 import com.google.android.material.chip.ChipGroup
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.auth.FirebaseAuth
 class MainActivity : AppCompatActivity() {
 
     private lateinit var adapter: PlaceAdapter
