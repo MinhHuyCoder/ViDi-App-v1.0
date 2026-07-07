@@ -24,7 +24,13 @@
         <activity
             android:name=".DetailActivity"
             android:exported="false"/>
+        <activity android:name=".auth.LoginActivity"/>
 
+        <activity android:name=".auth.RegisterActivity"/>
+
+        <activity android:name=".auth.ForgotPasswordActivity"/>
+
+        <activity android:name=".auth.ChangePasswordActivity"/>
     </application>
 
 </manifest>
