@@ -29,4 +29,35 @@ class PlaceRepository {
             null
         }
     }
+
+    suspend fun updatePlaceRating(
+        placeId: String,
+        rating: Double,
+        reviewCount: Int
+    ): Boolean {
+
+        return try {
+
+            db.collection(Const.COLLECTION_PLACES)
+                .document(placeId)
+                .update(
+                    mapOf(
+                        "rating" to rating,
+                        "reviewCount" to reviewCount
+                    )
+                )
+                .await()
+
+            true
+
+        } catch (e: Exception) {
+
+            Log.e(
+                "PlaceRepository",
+                "Lỗi cập nhật rating: ${e.message}"
+            )
+
+            false
+        }
+    }
 }

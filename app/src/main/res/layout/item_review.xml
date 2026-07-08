@@ -66,35 +66,35 @@
                 android:layout_height="16dp"
                 android:contentDescription="Star"
                 android:src="@android:drawable/btn_star_big_off"
-                app:tint="@color/rating_star" />
+                 />
 
             <ImageView
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:contentDescription="Star"
                 android:src="@android:drawable/btn_star_big_off"
-                app:tint="@color/rating_star" />
+                 />
 
             <ImageView
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:contentDescription="Star"
                 android:src="@android:drawable/btn_star_big_off"
-                app:tint="@color/rating_star" />
+                 />
 
             <ImageView
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:contentDescription="Star"
                 android:src="@android:drawable/btn_star_big_off"
-                app:tint="@color/rating_star" />
+                 />
 
             <ImageView
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:contentDescription="Star"
                 android:src="@android:drawable/btn_star_big_off"
-                app:tint="@color/rating_star" />
+                 />
 
         </LinearLayout>
 

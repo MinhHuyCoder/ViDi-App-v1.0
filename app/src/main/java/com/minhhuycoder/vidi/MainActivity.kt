@@ -17,6 +17,9 @@ import com.minhhuycoder.vidi.models.PlaceModel
 import android.widget.EditText
 import androidx.core.widget.addTextChangedListener
 import com.google.android.material.chip.ChipGroup
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var adapter: PlaceAdapter
@@ -27,6 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     private var searchKeyword = ""
     private var selectedCategory = "ALL"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +44,8 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+
 
         // Khởi tạo RecyclerView và LayoutManager
         recyclerView = findViewById(R.id.recyclerView)
@@ -181,5 +187,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         adapter.submitList(result)
+    }
+    override fun onResume() {
+        super.onResume()
+
+        viewModel.loadPlaces()
     }
 }
