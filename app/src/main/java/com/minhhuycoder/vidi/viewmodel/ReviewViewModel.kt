@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.minhhuycoder.vidi.core.ReviewRepository
 import com.minhhuycoder.vidi.models.ReviewModel
 import kotlinx.coroutines.launch
+import com.google.firebase.Timestamp
 
 /**
  * ReviewViewModel - Quản lý trạng thái dữ liệu đánh giá cho UI
@@ -24,6 +25,11 @@ class ReviewViewModel : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> get() = _isLoading
 
+    private val _submitResult = MutableLiveData<Boolean>()
+
+    val submitResult: LiveData<Boolean>
+        get() = _submitResult
+
     /**
      * Tải danh sách đánh giá từ Repository theo placeId
      */
@@ -35,6 +41,20 @@ class ReviewViewModel : ViewModel() {
             val result = repository.getReviewsByPlace(placeId)
             _reviews.postValue(result)
             _isLoading.postValue(false)
+        }
+    }
+    fun addReview(review: ReviewModel) {
+
+        _isLoading.value = true
+
+        viewModelScope.launch {
+
+            val success = repository.addReview(review)
+
+            _submitResult.postValue(success)
+
+            _isLoading.postValue(false)
+
         }
     }
 }

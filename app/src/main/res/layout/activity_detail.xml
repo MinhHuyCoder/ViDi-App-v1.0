@@ -350,42 +350,49 @@
 
                         <com.google.android.material.chip.Chip
                             style="@style/Widget.Material3.Chip.Filter"
+                            android:id="@+id/chipNewest"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Mới nhất" />
 
                         <com.google.android.material.chip.Chip
                             style="@style/Widget.Material3.Chip.Filter"
+                            android:id="@+id/chipFeatured"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Nổi bật" />
 
                         <com.google.android.material.chip.Chip
                             style="@style/Widget.Material3.Chip.Filter"
+                            android:id="@+id/chip5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="5★" />
 
                         <com.google.android.material.chip.Chip
                             style="@style/Widget.Material3.Chip.Filter"
+                            android:id="@+id/chip4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="4★" />
 
                         <com.google.android.material.chip.Chip
                             style="@style/Widget.Material3.Chip.Filter"
+                            android:id="@+id/chip3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="3★" />
 
                         <com.google.android.material.chip.Chip
                             style="@style/Widget.Material3.Chip.Filter"
+                            android:id="@+id/chip2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="2★" />
 
                         <com.google.android.material.chip.Chip
                             style="@style/Widget.Material3.Chip.Filter"
+                            android:id="@+id/chip1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="1★" />

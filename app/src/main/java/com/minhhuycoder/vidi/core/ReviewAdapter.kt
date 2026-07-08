@@ -10,6 +10,7 @@ import com.minhhuycoder.vidi.databinding.ItemReviewBinding
 import com.minhhuycoder.vidi.models.ReviewModel
 import java.text.SimpleDateFormat
 import java.util.*
+import android.util.Log
 
 /**
  * ReviewAdapter - Bộ nạp dữ liệu cho danh sách đánh giá
@@ -36,17 +37,28 @@ class ReviewAdapter : ListAdapter<ReviewModel, ReviewAdapter.ReviewViewHolder>(R
 
     override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) {
         val item = getItem(position)
+
+        Log.d(
+            "ADAPTER",
+            "user=${item.username}, rating=${item.rating}, comment=${item.comment}"
+        )
+
+        Log.d(
+            "ADAPTER",
+            "comment=${item.comment}, rating=${item.rating}"
+        )
         with(holder.binding) {
             // Gán dữ liệu vào các View8
             tvUserName.text = item.username
             tvReviewText.text = item.comment
-            
+
             // Xử lý hiển thị ngày tháng từ Firebase Timestamp
             item.timestamp?.let {
                 tvReviewDate.text = dateFormat.format(it.toDate())
             }
 
             // Hiển thị số sao dựa trên rating (logic xử lý trực tiếp trên LinearLayout)
+
             updateRatingStars(holder, item.rating)
         }
     }

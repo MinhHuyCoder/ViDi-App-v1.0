@@ -16,6 +16,7 @@ class LoginActivity : AppCompatActivity() {
     private val repository = AuthRepository()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         if (FirebaseAuth.getInstance().currentUser != null) {
 
             startActivity(
@@ -29,7 +30,7 @@ class LoginActivity : AppCompatActivity() {
 
             return
         }
-        super.onCreate(savedInstanceState)
+
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
 

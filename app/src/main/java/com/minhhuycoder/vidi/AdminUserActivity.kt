@@ -174,6 +174,7 @@ class AdminUserActivity : AppCompatActivity() {
     }
 
     private fun loadWishlistCountForUser(user: AdminUserModel) {
+            db.collection("favorites")
             .whereEqualTo("userId", user.uid)
             .get()
             .addOnSuccessListener { result ->
