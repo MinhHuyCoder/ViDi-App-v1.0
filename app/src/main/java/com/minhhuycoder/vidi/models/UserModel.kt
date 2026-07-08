@@ -4,5 +4,7 @@ data class UserModel(
     val uid: String = "",
     val email: String = "",
     val phone: String = "",
-    val username: String = ""
+    val username: String = "",
+    val role: String = "user",
+    val status: String = "active"
 )
