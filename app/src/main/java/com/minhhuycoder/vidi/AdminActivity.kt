@@ -400,7 +400,6 @@ class AdminActivity : AppCompatActivity() {
                 }
 
                 // Bước 2: tìm toàn bộ wishlist thuộc địa điểm này
-                db.collection("favorites")
                     .whereEqualTo("placeId", place.placeId)
                     .get()
                     .addOnSuccessListener { wishlistResult ->
