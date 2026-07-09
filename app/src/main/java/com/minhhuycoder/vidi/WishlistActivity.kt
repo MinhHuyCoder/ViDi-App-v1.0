@@ -1,4 +1,4 @@
-package com.minhhuycoder.vidi.wishlist
+package com.minhhuycoder.vidi
 
 import android.os.Bundle
 import android.view.View
@@ -11,6 +11,10 @@ import com.minhhuycoder.vidi.databinding.ActivityWishlistBinding
 import com.minhhuycoder.vidi.models.PlaceModel // Sử dụng trực tiếp model gốc của nhóm
 import android.content.Intent
 import com.minhhuycoder.vidi.DetailActivity
+import com.minhhuycoder.vidi.MainActivity
+import android.util.Log
+
+
 
 class WishlistActivity : AppCompatActivity() {
 
@@ -29,6 +33,55 @@ class WishlistActivity : AppCompatActivity() {
         setupRecyclerView()
         setupSearch()
         checkUserAndLoadData()
+        binding.bottomNavigation.selectedItemId = R.id.nav_favorite
+
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+
+            when (item.itemId) {
+
+                R.id.nav_home -> {
+
+                    true
+                }
+
+                R.id.nav_favorite -> {
+
+                    startActivity(
+                        Intent(
+                            this,
+                            WishlistActivity::class.java
+                        )
+                    )
+
+                    true
+                }
+
+                R.id.nav_notifications -> {
+
+                    Toast.makeText(
+                        this,
+                        "Đang phát triển",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    true
+                }
+
+                R.id.nav_profile -> {
+
+                    startActivity(
+                        Intent(
+                            this,
+                            ProfileActivity::class.java
+                        )
+                    )
+
+                    true
+                }
+
+                else -> false
+            }
+        }
     }
 
     private fun setupRecyclerView() {
@@ -62,8 +115,12 @@ class WishlistActivity : AppCompatActivity() {
 
         // Lắng nghe Realtime (SnapshotListener) bảng wishlist lọc theo đúng userId hiện tại
         db.collection("favorites")
+
             .whereEqualTo("userId", currentUserId)
             .addSnapshotListener { snapshot, error ->
+
+                Log.d("WISHLIST", "favorites = ${snapshot?.size()}")
+
                 if (error != null) {
                     Toast.makeText(this, "Lỗi tải dữ liệu!", Toast.LENGTH_SHORT).show()
                     return@addSnapshotListener
@@ -92,6 +149,8 @@ class WishlistActivity : AppCompatActivity() {
             .whereIn("placeId", placeIds)
             .get()
             .addOnSuccessListener { querySnapshot ->
+
+                Log.d("WISHLIST", "placeIds = $placeIds")
                 val placesList = querySnapshot.toObjects(PlaceModel::class.java)
 
                 allFavoritePlaces = placesList
@@ -154,7 +213,8 @@ class WishlistActivity : AppCompatActivity() {
             binding.rvWishlist.visibility = View.GONE        // Ẩn danh sách RecyclerView
         } else {
             binding.llEmptyMessage.visibility = View.GONE     // Ẩn thông báo rỗng
-            binding.rvWishlist.visibility = View.VISIBLE     // Hiện danh sách RecyclerView
+            binding.rvWishlist.visibility = View.VISIBLE
+            Log.d("WISHLIST", "submit = ${list.size}")// Hiện danh sách RecyclerView
             adapter.submitList(list)
         }
     }

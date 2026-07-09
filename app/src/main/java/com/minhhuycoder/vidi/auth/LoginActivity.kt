@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.minhhuycoder.vidi.MainActivity
 import com.minhhuycoder.vidi.databinding.ActivityLoginBinding
+import com.minhhuycoder.vidi.AdminActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -112,7 +113,7 @@ class LoginActivity : AppCompatActivity() {
                     "admin" -> {
 
                         startActivity(
-                            Intent(this, MainActivity::class.java)
+                            Intent(this, AdminActivity::class.java)
                         )
 
                     }

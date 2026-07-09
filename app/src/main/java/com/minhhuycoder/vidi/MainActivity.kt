@@ -19,6 +19,8 @@ import androidx.core.widget.addTextChangedListener
 import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.android.material.bottomnavigation.BottomNavigationView
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -56,12 +58,15 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView.adapter = adapter
 
+
+
         // === THÊM: Đóng gói placeId của quán được click ném sang màn hình chi tiết ===
         adapter.setOnItemClickListener { place ->
             val intent = Intent(this, DetailActivity::class.java)
             intent.putExtra("PLACE_ID", place.placeId) // Đẩy biến "placeId" từ Hợp đồng dữ liệu
             startActivity(intent)
         }
+
 
         adapter.setOnFavoriteClickListener { place ->
 
@@ -78,14 +83,43 @@ class MainActivity : AppCompatActivity() {
                 "createdAt" to System.currentTimeMillis()
             )
 
-            FirebaseFirestore.getInstance()
-                .collection("favorites")
-                .add(favorite)
-                .addOnSuccessListener {
-                    Toast.makeText(this, "Đã thêm vào yêu thích", Toast.LENGTH_SHORT).show()
-                }
-                .addOnFailureListener {
-                    Toast.makeText(this, "Thêm thất bại", Toast.LENGTH_SHORT).show()
+            val db = FirebaseFirestore.getInstance()
+
+            db.collection("favorites")
+                .whereEqualTo("userId", currentUser.uid)
+                .whereEqualTo("placeId", place.placeId)
+                .get()
+                .addOnSuccessListener { documents ->
+
+                    if (documents.isEmpty) {
+
+                        db.collection("favorites")
+                            .add(favorite)
+                            .addOnSuccessListener {
+                                Toast.makeText(
+                                    this,
+                                    "Đã thêm vào yêu thích",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                            .addOnFailureListener {
+                                Toast.makeText(
+                                    this,
+                                    "Thêm thất bại",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+
+                    } else {
+
+                        Toast.makeText(
+                            this,
+                            "Địa điểm đã có trong yêu thích",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                    }
+
                 }
         }
 
@@ -145,10 +179,69 @@ class MainActivity : AppCompatActivity() {
                 R.id.chipCafe -> selectedCategory = "CAFE"
 
                 R.id.chipEatery -> selectedCategory = "EATERY"
+
             }
 
             applyFilter()
         }
+
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)
+
+        bottomNav.selectedItemId = R.id.nav_home
+
+        bottomNav.setOnItemSelectedListener {
+
+            when (it.itemId) {
+
+                R.id.nav_home -> {
+
+                    true
+                }
+
+                R.id.nav_favorite -> {
+
+                    startActivity(
+                        Intent(
+                            this,
+                            WishlistActivity::class.java
+                        )
+                    )
+
+                    true
+                }
+
+                R.id.nav_notifications -> {
+
+                    Toast.makeText(
+                        this,
+                        "Đang phát triển",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    startActivity(
+                        Intent(this, AdminActivity::class.java)
+                    )
+
+                    true
+                }
+
+
+                R.id.nav_profile -> {
+
+                    startActivity(
+                        Intent(
+                            this,
+                            ProfileActivity::class.java
+                        )
+                    )
+
+                    true
+                }
+
+                else -> false
+            }
+        }
+
 
 
 
@@ -177,6 +270,7 @@ class MainActivity : AppCompatActivity() {
                             || it.category.contains("ăn", true)
                             || it.category.contains("restaurant", true)
                 }
+
             }
         }
 

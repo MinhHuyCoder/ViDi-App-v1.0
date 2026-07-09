@@ -1,4 +1,4 @@
-package com.minhhuycoder.vidi.wishlist
+package com.minhhuycoder.vidi
 
 data class WishlistModel(
     val favoriteId: String = "",
