@@ -13,6 +13,18 @@
         android:theme="@style/Theme.VIDi">
 
         <activity
+            android:name=".AdminActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".AdminUserActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".AdminEditPlaceActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".auth.LoginActivity"
             android:exported="true">
 
@@ -35,6 +47,22 @@
         <activity
             android:name=".DetailActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".WishlistActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".AccountInfoActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".ChangePasswordActivity"
+            android:exported="false"/>
 
     </application>
 

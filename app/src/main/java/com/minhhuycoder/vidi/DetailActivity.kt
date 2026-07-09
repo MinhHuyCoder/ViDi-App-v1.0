@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide // === THÊM: Để load ảnh online từ URL =
 import com.minhhuycoder.vidi.core.ReviewAdapter
 import com.minhhuycoder.vidi.databinding.ActivityDetailBinding
 import com.minhhuycoder.vidi.viewmodel.ReviewViewModel
-import com.minhhuycoder.vidi.models.PhotoModel
+import com.google.firebase.firestore.FirebaseFirestore
 import com.minhhuycoder.vidi.core.PhotoAdapter
 import com.minhhuycoder.vidi.core.PlaceRepository // === THÊM: Kết nối với tầng dữ liệu quán ===
 import kotlinx.coroutines.launch
@@ -38,13 +38,6 @@ class DetailActivity : AppCompatActivity() {
     // === THÊM: Khai báo đối tượng Repository xử lý logic lấy dữ liệu quán ===
     private val placeRepository by lazy { PlaceRepository() }
 
-    private val photoList = listOf(
-        PhotoModel("https://picsum.photos/600/600?1"),
-        PhotoModel("https://picsum.photos/600/600?2"),
-        PhotoModel("https://picsum.photos/600/600?3"),
-        PhotoModel("https://picsum.photos/600/600?4"),
-        PhotoModel("https://picsum.photos/600/600?5")
-    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +55,6 @@ class DetailActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[ReviewViewModel::class.java]
 
         setupRecyclerView()
-        setupAlbumRecyclerView()
         observeViewModel()
 
         binding.chipGroupFilters.setOnCheckedStateChangeListener { _, checkedIds ->
@@ -159,16 +151,7 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupAlbumRecyclerView() {
-        binding.rvAlbum.apply {
-            layoutManager = LinearLayoutManager(
-                this@DetailActivity,
-                LinearLayoutManager.HORIZONTAL,
-                false
-            )
-            adapter = PhotoAdapter(photoList)
-        }
-    }
+
 
     /**
      * Quan sát LiveData từ ViewModel để cập nhật UI tự động
@@ -277,22 +260,29 @@ class DetailActivity : AppCompatActivity() {
             .toString()
             .trim()
 
-        val review = ReviewModel(
+        FirebaseFirestore.getInstance()
+            .collection("users")
+            .document(currentUser.uid)
+            .get()
+            .addOnSuccessListener { document ->
 
-            placeId = placeId,
+                val username =
+                    document.getString("username") ?: "Người dùng"
 
-            userId = currentUser.uid,
+                val review = ReviewModel(
 
-            username = currentUser.displayName ?: "Người dùng",
+                    placeId = placeId,
+                    userId = currentUser.uid,
+                    username = username,
+                    rating = rating,
+                    comment = comment,
+                    timestamp = Timestamp.now(),
+                    status = "visible"
+                )
 
-            rating = rating,
+                viewModel.addReview(review)
 
-            comment = comment,
-
-            timestamp = Timestamp.now(),
-
-            status = "visible"
-        )
+            }
 
         if (rating <= 0f) {
 
@@ -311,7 +301,6 @@ class DetailActivity : AppCompatActivity() {
 
             return
         }
-        viewModel.addReview(review)
 
     }
     private fun applyFilter() {

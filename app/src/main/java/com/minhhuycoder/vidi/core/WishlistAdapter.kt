@@ -1,4 +1,4 @@
-package com.minhhuycoder.vidi.wishlist
+package com.minhhuycoder.vidi
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

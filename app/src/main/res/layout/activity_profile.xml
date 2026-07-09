@@ -124,10 +124,11 @@
                             app:tint="#F97316" />
 
                         <TextView
+                            android:id="@+id/tvFavoriteCount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:text="18"
+                            android:text="0"
                             android:textColor="#111827"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -159,10 +160,11 @@
                             app:tint="#F97316" />
 
                         <TextView
+                            android:id="@+id/tvReviewCount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:text="12"
+                            android:text="0"
                             android:textColor="#111827"
                             android:textSize="18sp"
                             android:textStyle="bold" />
