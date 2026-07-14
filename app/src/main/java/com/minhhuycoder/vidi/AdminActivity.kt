@@ -16,6 +16,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.minhhuycoder.vidi.admin.AdminPlaceAdapter
 import com.minhhuycoder.vidi.admin.AdminReviewModel
 import com.minhhuycoder.vidi.models.PlaceModel
+import android.widget.ImageButton
+import com.google.firebase.auth.FirebaseAuth
+import com.minhhuycoder.vidi.auth.LoginActivity
 
 class AdminActivity : AppCompatActivity() {
 
@@ -26,6 +29,7 @@ class AdminActivity : AppCompatActivity() {
     private lateinit var tvTotalReviews: TextView
     private lateinit var fabAddPlace: View
     private lateinit var tabUsers: View
+    private lateinit var btnLogout: ImageButton
     private lateinit var placeAdapter: AdminPlaceAdapter
 
     private val db = FirebaseFirestore.getInstance()
@@ -59,6 +63,7 @@ class AdminActivity : AppCompatActivity() {
         tvTotalReviews = findViewById(R.id.tvTotalReviews)
         fabAddPlace = findViewById(R.id.fabAddPlace)
         tabUsers = findViewById(R.id.tabUsers)
+        btnLogout = findViewById(R.id.btnLogout)
     }
 
     private fun setupRecyclerView() {
@@ -127,6 +132,27 @@ class AdminActivity : AppCompatActivity() {
         tabUsers.setOnClickListener {
             val intent = Intent(this, AdminUserActivity::class.java)
             startActivity(intent)
+        }
+        btnLogout.setOnClickListener {
+
+            AlertDialog.Builder(this)
+                .setTitle("Đăng xuất")
+                .setMessage("Bạn có chắc muốn đăng xuất?")
+                .setPositiveButton("Đăng xuất") { _, _ ->
+
+                    FirebaseAuth.getInstance().signOut()
+
+                    startActivity(
+                        Intent(
+                            this,
+                            LoginActivity::class.java
+                        )
+                    )
+
+                    finishAffinity()
+                }
+                .setNegativeButton("Hủy", null)
+                .show()
         }
     }
 

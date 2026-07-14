@@ -218,10 +218,6 @@ class MainActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
 
-                    startActivity(
-                        Intent(this, AdminActivity::class.java)
-                    )
-
                     true
                 }
 
