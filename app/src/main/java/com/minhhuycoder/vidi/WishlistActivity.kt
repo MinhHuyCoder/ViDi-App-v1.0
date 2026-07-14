@@ -41,7 +41,10 @@ class WishlistActivity : AppCompatActivity() {
 
                 R.id.nav_home -> {
 
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
                     true
+
                 }
 
                 R.id.nav_favorite -> {
